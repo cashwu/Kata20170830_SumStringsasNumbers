@@ -44,6 +44,12 @@ namespace Kata20170830_SumStringsasNumbers
             sumStringsShouldBe("100", "99", "1");
         }
 
+        [TestMethod]
+        public void input_00103_and_08567_should_be_8670()
+        {
+            sumStringsShouldBe("8670", "00103", "08567");
+        }
+
         private static void sumStringsShouldBe(string expected, string a, string b)
         {
             var kata = new Kata();
@@ -58,7 +64,7 @@ namespace Kata20170830_SumStringsasNumbers
         {
             var achars = a.Reverse().ToList();
             var bchars = b.Reverse().ToList();
-            return string.Concat(SumOfTwoChars(achars, bchars).Reverse());
+            return string.Concat(SumOfTwoChars(achars, bchars).Reverse()).TrimStart('0');
         }
 
         private static IEnumerable<double> SumOfTwoChars(List<char> achars, List<char> bchars)
