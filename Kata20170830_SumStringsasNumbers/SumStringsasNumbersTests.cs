@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kata20170830_SumStringsasNumbers
@@ -18,6 +20,12 @@ namespace Kata20170830_SumStringsasNumbers
             sumStringsShouldBe("3", "2", "1");
         }
 
+        [TestMethod]
+        public void input_10_and_10_should_be_20()
+        {
+            sumStringsShouldBe("20", "10", "10");
+        }
+
         private static void sumStringsShouldBe(string expected, string a, string b)
         {
             var kata = new Kata();
@@ -30,7 +38,16 @@ namespace Kata20170830_SumStringsasNumbers
     {
         public string sumStrings(string a, string b)
         {
-            return (int.Parse(a) + int.Parse(b)).ToString();
+            var achars = a.Reverse().ToList();
+            var bchars = b.Reverse().ToList();
+            var result = new List<double>();
+            for (int i = 0; i < achars.Count; i++)
+            {
+                result.Add(char.GetNumericValue(achars[i]) + char.GetNumericValue(bchars[i]));
+            }
+
+            result.Reverse();
+            return string.Concat(result);
         }
     }
 }
