@@ -38,6 +38,12 @@ namespace Kata20170830_SumStringsasNumbers
             sumStringsShouldBe("141", "16", "125");
         }
 
+        [TestMethod]
+        public void input_99_and_1_should_be_100()
+        {
+            sumStringsShouldBe("100", "99", "1");
+        }
+
         private static void sumStringsShouldBe(string expected, string a, string b)
         {
             var kata = new Kata();
@@ -52,8 +58,7 @@ namespace Kata20170830_SumStringsasNumbers
         {
             var achars = a.Reverse().ToList();
             var bchars = b.Reverse().ToList();
-            var result = SumOfTwoChars(achars, bchars).Reverse();
-            return string.Concat(result);
+            return string.Concat(SumOfTwoChars(achars, bchars).Reverse());
         }
 
         private static IEnumerable<double> SumOfTwoChars(List<char> achars, List<char> bchars)
@@ -63,7 +68,7 @@ namespace Kata20170830_SumStringsasNumbers
             for (var i = 0; i < maxCharsLength; i++)
             {
                 var sumOf2Num = CharsNumberBy(i, achars) + CharsNumberBy(i, bchars) + tenNum;
-                if (sumOf2Num > 10)
+                if (sumOf2Num >= 10)
                 {
                     tenNum = sumOf2Num / 10;
                     sumOf2Num = sumOf2Num % 10;
@@ -74,6 +79,11 @@ namespace Kata20170830_SumStringsasNumbers
                 }
 
                 yield return sumOf2Num;
+            }
+
+            if (tenNum != 0)
+            {
+                yield return tenNum;
             }
         }
 
