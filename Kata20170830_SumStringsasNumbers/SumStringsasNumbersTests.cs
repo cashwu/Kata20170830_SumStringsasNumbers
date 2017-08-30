@@ -73,24 +73,30 @@ namespace Kata20170830_SumStringsasNumbers
             var tenNum = 0;
             for (var i = 0; i < maxCharsLength; i++)
             {
-                var sumOf2Num = CharsNumberBy(i, achars) + CharsNumberBy(i, bchars) + tenNum;
-                if (sumOf2Num >= 10)
-                {
-                    tenNum = sumOf2Num / 10;
-                    sumOf2Num = sumOf2Num % 10;
-                }
-                else
-                {
-                    tenNum = 0;
-                }
-
-                yield return sumOf2Num;
+                yield return SumOf2Num(achars, bchars, i, ref tenNum);
             }
 
             if (tenNum != 0)
             {
                 yield return tenNum;
             }
+        }
+
+        private static int SumOf2Num(List<char> achars, List<char> bchars, int idx, ref int tenNum)
+        {
+            var sum = CharsNumberBy(idx, achars) + CharsNumberBy(idx, bchars) + tenNum;
+
+            if (sum >= 10)
+            {
+                tenNum = sum / 10;
+                sum = sum % 10;
+            }
+            else
+            {
+                tenNum = 0;
+            }
+
+            return sum;
         }
 
         private static int CharsNumberBy(int i, List<char> achars)
