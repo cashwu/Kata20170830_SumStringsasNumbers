@@ -12,6 +12,12 @@ namespace Kata20170830_SumStringsasNumbers
             sumStringsShouldBe("2", "1", "1");
         }
 
+        [TestMethod]
+        public void input_2_and_1_should_be_3()
+        {
+            sumStringsShouldBe("3", "2", "1");
+        }
+
         private static void sumStringsShouldBe(string expected, string a, string b)
         {
             var kata = new Kata();
@@ -24,7 +30,7 @@ namespace Kata20170830_SumStringsasNumbers
     {
         public string sumStrings(string a, string b)
         {
-            return "2";
+            return (int.Parse(a) + int.Parse(b)).ToString();
         }
     }
 }
